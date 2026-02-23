@@ -1,0 +1,31 @@
+# Data files
+data/
+*.csv
+*.xls
+*.xlsx
+*.dta
+*.sas7bdat
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.env
+
+# OS specific
+.DS_Store
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# TeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.pdf

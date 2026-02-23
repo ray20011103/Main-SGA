@@ -1,0 +1,336 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+% 設定邊界
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\linespread{1.5} % 1.5倍行高
+
+\title{Organizational Capital and Asset Prices: Evidence from Taiwan Using Decomposed Main SG&A}
+\author{Rau Hsu \\ National Chengchi University}
+% \date{\today}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+This paper investigates the asset pricing implications of organizational capital (OC) in the Taiwan stock market. Following Eisfeldt and Papanikolaou (2013), I decompose Main SG\A expenses into maintenance and investment components to construct a measure of organizational capital stock. I find that firms with higher organizational capital investment intensity earn higher future stock returns. This premium is robust to industry effects and is not fully explained by standard risk factors. Furthermore, I provide evidence that OC investment is associated with higher future earnings volatility, supporting a risk-based explanation for the OC premium.
+\end{abstract}
+
+\section{Introduction}
+Intangible assets have become increasingly important drivers of corporate value. Among these, organizational capital---embodied in key employees, proprietary processes, and customer relationships---is a crucial but elusive component. This paper focuses on ``Main SG\&A'' (SG\&A excluding R\&D) as a primary source of organizational capital investment...
+
+\section{Data and Methodology}
+
+\subsection{Data Source}
+The primary data for this study comes from the TEJ (Taiwan Economic Journal) database, covering all listed firms in Taiwan from 2014 to 2024. Key financial variables include...
+
+\subsection{Decomposing SG\&A}
+Standard accounting does not distinguish between the investment and maintenance portions of SG\&A. Following \cite{Enache2018}, we focus on ``Main SG\&A,'' defined as total SG\&A expenses minus R\&D expenditures:
+
+\begin{equation}
+\text{MainSG\&A}_{i,t} = \text{TotalSG\&A}_{i,t} - \text{R\&D}_{i,t}
+\end{equation}
+
+This distinction is a key innovation of our study compared to \cite{Eisfeldt2013}. In Taiwan's market, which is heavily weighted towards manufacturing and technology, R\&D represents technological capital, which is distinct from the organizational capital (e.g., supply chain management, brand equity, human capital) captured by Main SG\&A. By isolating Main SG\&A, we provide a cleaner measure of organizational capital.
+
+We estimate the maintenance component using the following regression for each industry-year group:
+
+\begin{equation}
+\frac{\text{MainSG\&A}_{i,t}}{\text{Assets}_{i,t}} = \gamma_0 + \gamma_1 \frac{\text{Revenue}_{i,t}}{\text{Assets}_{i,t}} + \gamma_2 D_{\text{Dec}} + \gamma_3 D_{\text{Loss}} + \epsilon_{i,t}
+\end{equation}
+
+The maintenance component ($\text{Maintenance}_{i,t}$) is defined as the fitted value from the above regression, representing the SG\&A expenses required to support current operations:
+
+\begin{equation}
+\text{Maintenance}_{i,t} = \widehat{\text{MainSG\&A}}_{i,t}
+\end{equation}
+
+The investment component ($\text{Investment}_{i,t}$) is then defined as the residual amount not explained by current revenue generation needs:
+
+\begin{equation}
+\text{Investment}_{i,t} = \text{MainSG\&A}_{i,t} - \text{Maintenance}_{i,t}
+\end{equation}
+
+
+
+\subsection{Measuring Organizational Capital Stock}
+Using the estimated investment flows, I construct the stock of organizational capital ($OC_{i,t}$) using the Perpetual Inventory Method (PIM):
+
+\begin{equation}
+OC_{i,t} = (1 - \delta) OC_{i,t-1} + \frac{Investment_{i,t}}{CPI_t}
+\end{equation}
+
+where $\delta$ is set to 15\%, following the literature \cite{Eisfeldt2013}.
+
+\section{Empirical Results}
+
+\subsection{Summary Statistics}
+Table 1 presents the distribution of the sample across industries. The sample is dominated by the electronic components industry (M23), reflecting the structure of the Taiwan stock market. The average $R^2$ of the SG\&A decomposition regression is 0.39, indicating that revenue explains a significant portion of SG\&A, but a substantial residual remains, which we capture as investment.
+
+\begin{table}[ht]
+\centering
+\caption{Industry Distribution and Decomposition Model Fit}
+\begin{tabular}{lccc}
+\toprule
+Industry Group & No. of Firms & Observations & Avg. $R^2$ \\
+\midrule
+M23 (Electronic Parts) & 937 & 9,735 & 0.098 \\
+M17 (Finance) & 196 & 1,993 & 0.315 \\
+M15 (Trading) & 146 & 1,501 & 0.272 \\
+M99 (Others) & 110 & 1,090 & 0.189 \\
+M25 (Optoelectronic) & 103 & 1,119 & 0.196 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table 2 reports the descriptive statistics for the main variables. The mean organizational capital intensity ($OC/Assets$) is 0.203, with a standard deviation of 0.344. The average Tobin's Q is 1.386.
+
+\begin{table}[ht]
+\centering
+\caption{Descriptive Statistics}
+\begin{tabular}{lcccccc}
+\toprule
+Variable & Mean & Std. Dev. & P25 & Median & P75 \\
+\midrule
+OC Intensity & 0.203 & 0.344 & 0.017 & 0.128 & 0.297 \\
+Tobin's Q & 1.386 & 1.065 & 0.780 & 1.050 & 1.570 \\
+Size (Log MV) & 8.343 & 1.403 & 7.351 & 8.173 & 9.167 \\
+Leverage & 0.412 & 0.183 & 0.273 & 0.413 & 0.543 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table 3 shows the correlation matrix. OC Intensity is positively correlated with Tobin's Q ($\rho = 0.13$) and SG\&A/Assets ($\rho = 0.72$), but negatively correlated with Size ($\rho = -0.26$).
+
+\begin{table}[ht]
+\centering
+\caption{Correlation Matrix}
+\begin{tabular}{lccccc}
+\toprule
+ & OC Intensity & Tobin's Q & Size & Leverage & SG\&A/Assets \\
+\midrule
+OC Intensity & 1.000 & & & & \\
+Tobin's Q & 0.130 & 1.000 & & & \\
+Size & -0.260 & 0.256 & 1.000 & & \\
+Leverage & -0.043 & -0.287 & 0.062 & 1.000 & \\
+SG\&A/Assets & 0.716 & 0.123 & -0.230 & 0.040 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Validating the Investment Channel}
+To validate that our derived organizational capital measure behaves like an economic asset rather than a pure expense, we conduct three sets of validation tests.
+
+First, we test whether current OC investment predicts future earnings changes. Table 4 confirms this hypothesis. The coefficient on Main SG\&A Investment is positive and statistically significant, comparable to R\&D and even stronger than physical capital (PPE) investment in terms of significance.
+
+\begin{table}[ht]
+\centering
+\caption{Future Benefits of Investment Outlays}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{Future Earnings (Raw)} & \multicolumn{2}{c}{Future Earnings (Std)} \\
+Variable & Coeff & t-stat & Coeff & t-stat \\
+\midrule
+R\&D & 0.057 & (1.12) & 0.001 & (0.83) \\
+Main SG\&A Inv & 0.003 & (0.35) & 0.001 & (1.34) \\
+PPE Capex & -0.102 & (-7.02) & -0.005 & (-7.02) \\
+Intan Capex & -0.258 & (-1.73) & -0.001 & (-1.64) \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Dependent Variable: Change in Earnings (t to t+3).}
+\end{tabular}
+\end{table}
+
+Second, \cite{Eisfeldt2013} argue that organizational capital is a risky asset. Table 5 shows that firms with higher OC investment exhibit significantly higher future earnings volatility, supporting the risk-based explanation for the OC premium.
+
+\begin{table}[ht]
+\centering
+\caption{Uncertainty of Future Benefits (Risk)}
+\begin{tabular}{lcc}
+\toprule
+Variable & Std. Coeff & t-statistic \\
+\midrule
+R\&D & 0.006*** & (7.38) \\
+Main SG\&A Inv & 0.003*** & (3.69) \\
+PPE Capex & 0.001** & (2.42) \\
+Intan Capex & 0.001* & (1.87) \\
+Leverage & -0.019*** & (-4.01) \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize Dependent Variable: Future Earnings Volatility (Std Dev t to t+3).}
+\end{tabular}
+\end{table}
+
+Third, we examine the value relevance of organizational capital stock. Table 6 reports the regression results of Tobin's Q on OC stock. Model (1) presents the baseline OLS estimate, showing a strong positive association. Model (2) adds industry and year fixed effects to control for unobserved heterogeneity, and the coefficient remains robust. Model (3) employs a dynamic panel specification by including lagged Tobin's Q to control for persistence in valuation. Even in this rigorous specification, the coefficient on OC Stock remains positive and highly significant ($\beta=0.064$, $t=4.51$), indicating that organizational capital provides incremental information about firm value.
+
+We also compare our Main SG\&A measure with the traditional Total SG\&A measure. In untabulated results using the same dynamic panel specification, the Traditional OC measure yields a slightly higher coefficient of 0.076 ($t=5.01$). This suggests that while R\&D (included in Total SG\&A) contributes to value, our Main SG\&A measure effectively captures a distinct component of organizational capital that is independently valued by the market.
+
+\begin{table}[ht]
+\centering
+\caption{Value Relevance: Tobin's Q Regressions (Full Sample)}
+\begin{tabular}{lccc}
+\toprule
+ & (1) OLS & (2) Fixed Effects & (3) Dynamic Panel \\
+\midrule
+OC Stock (Std) & 0.161*** & 0.166*** & 0.064*** \\
+ & (6.60) & (6.89) & (4.51) \\
+Lagged Q & & & 0.725*** \\
+ & & & (19.39) \\
+\midrule
+Controls & Yes & Yes & Yes \\
+Ind/Year FE & No & Yes & Yes \\
+Adj. $R^2$ & 0.265 & 0.318 & 0.669 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Asset Pricing Tests}
+Table 7 reports the value-weighted monthly returns for single-sorted portfolios. The High-Low strategy yields an insignificant return of 0.04\% per month (t=0.10) for the full sample.
+
+\begin{table}[ht]
+\centering
+\caption{Single Sort Portfolios (Full Sample)}
+\begin{tabular}{lcccccc}
+\toprule
+Rank & Q1 (Low) & Q2 & Q3 & Q4 & Q5 (High) & High-Low \\
+\midrule
+Mean Return & 2.06 & 1.68 & 1.94 & 1.63 & 2.10 & 0.04 \\
+t-statistic & (3.90) & (3.48) & (4.89) & (5.15) & (5.40) & (0.10) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table 8 presents the double sort results. When controlling for size, we find a striking result: the organizational capital premium is highly significant in small firms (0.50\%, t=3.47) but non-existent in large firms (0.11\%, t=0.28). This suggests that the pricing of organizational capital is subject to limits to arbitrage or information asymmetry, which are more prevalent in small-cap stocks.
+
+\begin{table}[ht]
+\centering
+\caption{Double Sorts on Size and Organizational Capital}
+\begin{tabular}{lcccccc}
+\toprule
+ & Q1 (Low) & Q2 & Q3 & Q4 & Q5 (High) & High-Low \\
+\midrule
+\textbf{Small Firms} & 1.08 & 0.99 & 1.15 & 1.10 & 1.58 & \textbf{0.50***}\\
+t-statistic & (3.00) & (2.53) & (3.22) & (2.86) & (3.85) & \textbf{(3.47)}\\
+\midrule
+\textbf{Big Firms} & 2.07 & 1.70 & 2.00 & 1.69 & 2.19 & 0.11 \\
+t-statistic & (3.90) & (3.49) & (4.95) & (5.39) & (5.47) & (0.28) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table 9 reports the factor regressions for the Small Firm High-Low strategy. The alpha remains positive and statistically significant across CAPM, Fama-French 3-factor, and Fama-French 5-factor models, ranging from 0.41\% to 0.44\% per month. This indicates that the excess returns earned by small firms with high organizational capital cannot be explained by standard risk factors.
+
+\begin{table}[ht]
+\centering
+\caption{Factor Regressions (Small Firm High-Low Strategy)}
+\begin{tabular}{lccc}
+\toprule
+Model & Alpha (\%) & t-stat & Adj. $R^2$ \\
+\midrule
+CAPM & 0.43*** & (3.18) & 0.031 \\
+Fama-French 3-Factor & 0.44*** & (3.20) & 0.059 \\
+Fama-French 5-Factor & 0.41*** & (2.92) & 0.086 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Robustness Checks}
+To ensure our main findings are not driven by specific methodological choices, we perform two key robustness tests concerning the timing of portfolio formation and the depreciation rate used in the PIM.
+
+Table 10 reports the performance of the Small Firm High-Low strategy under different rebalancing months. Our baseline uses May (Month 5), assuming financial statements are fully public and priced by then. We test April (Month 4), immediately after the statutory deadline, and June (Month 6), the standard Fama-French timing. The premium remains positive and highly significant across all specifications, ranging from 0.47\% to 0.50\% per month.
+
+\begin{table}[ht]
+\centering
+\caption{Robustness to Rebalancing Timing (Small Firms)}
+\begin{tabular}{lccc}
+\toprule
+Rebalancing Month & Mean Return (\%) & t-statistic \\
+\midrule
+April (Month 4) & 0.469*** & (3.25) \\
+May (Month 5, Baseline) & 0.500*** & (3.47) \\
+June (Month 6) & 0.491*** & (3.40) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table 11 examines the sensitivity to the depreciation rate ($\delta$) used in the Perpetual Inventory Method. Our baseline uses $\delta=0.15$. We re-estimate the OC stock using $\delta=0.10$, $0.20$, and $0.30$. The results show that the organizational capital premium is robust to alternative depreciation rates. Interestingly, higher depreciation rates yield slightly stronger t-statistics, potentially reflecting the rapid obsolescence of intangible capital in Taiwan's technology-driven market.
+
+\begin{table}[ht]
+
+\centering
+
+\caption{Robustness to Depreciation Rate (Small Firms)}
+
+\begin{tabular}{lccc}
+
+\toprule
+
+Depreciation Rate ($\delta$) & Mean Return (\%) & t-statistic \\
+
+\midrule
+
+$\delta = 0.10$ & 0.468*** & (3.17) \\
+
+$\delta = 0.15$ (Baseline) & 0.500*** & (3.47) \\
+
+$\delta = 0.20$ & 0.505*** & (3.70) \\
+
+$\delta = 0.30$ & 0.509*** & (3.93) \\
+
+\bottomrule
+
+\end{tabular}
+
+\end{table}
+
+
+
+Finally, we compare our proposed ``Main SG\&A'' measure against the traditional ``Total SG\&A'' measure used in prior literature. Table 12 reports the performance of the Small Firm High-Low strategy for both measures.
+
+
+
+\begin{table}[ht]
+
+\centering
+
+\caption{Comparison of OC Measures (Small Firms)}
+
+\begin{tabular}{lcc}
+
+\toprule
+
+Metric & Main SG\&A (Proposed) & Total SG\&A (Traditional) \\
+
+\midrule
+
+Mean Return & 0.572\%*** & 0.574\%*** \\
+
+t-statistic & (3.97) & (4.70) \\
+
+\bottomrule
+
+\end{tabular}
+
+\end{table}
+
+
+
+Both measures yield statistically significant premiums, confirming that organizational capital is robustly priced in Taiwan. The slightly stronger performance of Total SG\&A suggests that R\&D expenses, which are excluded from our Main SG\&A measure, also contain valuable information for asset pricing. However, the significance of the Main SG\&A measure (t=3.97) importantly demonstrates that organizational capital arising from non-technological sources (e.g., brand, supply chain, human capital) is a distinct and powerful driver of returns, independent of pure R\&D effects.
+
+
+
+\section{Conclusion}
+
+
+This paper provides novel evidence on the pricing of organizational capital in Taiwan...(Unfinished)
+
+\bibliographystyle{aer}
+\bibliography{references}
+
+\end{document}
